@@ -11,12 +11,12 @@ def registrar(clientes):
     activador=True
     while activador==True:
         try:
-            id=int(input("ingrese su ID de inicio"))
+            id=int(input("ingrese su ID de inicio "))
             activador=True
 
         except ValueError:
             print("ingrese un valor valido")
-            id=int(input("ingrese su ID de inicio"))
+            id=int(input("ingrese su ID de inicio "))
 
         while id in clientes:
             print("ese id ya fue tomado seleccione otro")
@@ -25,17 +25,17 @@ def registrar(clientes):
 
 
 
-        nombre=input("porvafor ingrese su nombre").lower().strip()
+        nombre=input("porvafor ingrese su nombre ").lower().strip()
 
         while not nombre.isalpha():
             print("ingrese un nombre valido")
-            nombre=input("porvafor ingrese su nombre").lower().strip()
+            nombre=input("porvafor ingrese su nombre ").lower().strip()
 
-        email=input("ingrese su email")
+        email=input("ingrese su email ")
 
         while "@" not in email:
             print("ingrese un correro valido")
-            email=input("ingrese su email")
+            email=input("ingrese su email ")
 
 
 
@@ -45,7 +45,7 @@ def registrar(clientes):
         data= list(clientes.items())
         data+=datos_user
 
-        desea_registrar=input("desea registrar otro usuario si/no").lower().strip()
+        desea_registrar=input("desea registrar otro usuario si/no ").lower().strip()
 
         while desea_registrar!="si" and desea_registrar!="no":
             print("ingrese un valor valido")
