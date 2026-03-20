@@ -30,17 +30,3 @@ def generar_reporte(ordenes):
         productos_vendidos[producto] = productos_vendidos.get(producto, 0) + cantidad
     return total_ordenes, total_ingresos, ordenes_por_cliente, productos_vendidos
 
-print("total ingresado:", calcular_total(ordenes))
-total_ordenes, total_ingresos, por_cliente, vendidos = generar_reporte(ordenes)
-
-print("\n==== REPORTE ====")
-print("Total de órdenes:", total_ordenes)
-print("Total de ingresos:", total_ingresos)
-
-print("\nPedidos por cliente:")
-for cliente, cantidad in por_cliente.items():
-    print(f"Cliente {cliente}: {cantidad} productos")
-
-print("\nProductos vendidos:")
-for producto, cantidad in vendidos.items():
-    print(f"{producto}: {cantidad} unidades")

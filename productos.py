@@ -1,6 +1,6 @@
 productos = {}
 
-def registrar_productos(productos):
+def registrarproductos(productos):
 
     while True:
         try:

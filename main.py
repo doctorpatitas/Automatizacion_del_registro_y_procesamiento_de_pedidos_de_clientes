@@ -1,8 +1,10 @@
-from registrar import registrar
-from productos import registrar_productos
+from registrar import *
+from productos import *
 from order_creation import crear_pedido
 from registered_order import mostrar_pedidos
 from inventario import calcular_total, generar_reporte
+from login import *
+
 
 clientes = {}
 productos = {}
@@ -12,12 +14,11 @@ def menu():
     while True:
         print("""
 1. Registrar cliente
-2. Registrar producto
-3. Crear pedido
-4. Ver pedidos
-5. Calcular ingresos
-6. Reporte final
-0. Salir
+2. Login cliente
+3. Ver pedidos
+4. Calcular ingresos
+5. Reporte final
+6. Salir
 """)
 
         opcion = input("Seleccione una opción: ")
@@ -26,19 +27,24 @@ def menu():
             registrar(clientes)
 
         elif opcion == "2":
-            registrar_productos(productos)
+            resultado=login(clientes)
+            if resultado=="admin":
+                print("modo admin")
+                registrarproductos(productos)
 
+            elif resultado=="cliente":
+                print("modo cliente")
+                crear_pedido(pedidos, clientes, productos)
+
+        
         elif opcion == "3":
-            crear_pedido(pedidos, clientes, productos)
-
-        elif opcion == "4":
             mostrar_pedidos(pedidos)
 
-        elif opcion == "5":
+        elif opcion == "4":
             total = calcular_total(pedidos)
             print("Total ingresos:", total)
 
-        elif opcion == "6":
+        elif opcion == "5":
             total_ordenes, total_ingresos, por_cliente, vendidos = generar_reporte(pedidos)
 
             print("\n==== REPORTE ====")
@@ -53,7 +59,7 @@ def menu():
             for producto, cantidad in vendidos.items():
                 print(f"{producto}: {cantidad}")
 
-        elif opcion == "0":
+        elif opcion == "6":
             break
 
         else:
