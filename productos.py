@@ -16,14 +16,16 @@ def registrar_productos(productos):
         nombre = input("Ingrese nombre del producto: ").lower().strip()
 
         try:
-            precio = float(input("Ingrese precio: "))
+            
             cantidad=int(input("ingrese la cantidada: "))
+            precio = float(input("Ingrese precio: "))
+            
         except ValueError:
             print("Precio inválido")
             continue
 
        
-        producto = (product_id, nombre, precio, cantidad)
+        producto = (product_id, nombre, cantidad, precio )
 
         
         productos[product_id] = producto
