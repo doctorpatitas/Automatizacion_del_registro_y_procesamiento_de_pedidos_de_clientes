@@ -26,27 +26,21 @@ def generar_reporte(ordenes):
         producto = orden[1]
         cantidad = orden[2]
 
-        if cliente not in ordenes_por_cliente:
-            ordenes_por_cliente[cliente] = cantidad
-        else:
-            ordenes_por_cliente[cliente] += cantidad
+        ordenes_por_cliente[cliente] = ordenes_por_cliente.get(cliente, 0) + cantidad
+        productos_vendidos[producto] = productos_vendidos.get(producto, 0) + cantidad
+    return total_ordenes, total_ingresos, ordenes_por_cliente, productos_vendidos
 
-        if producto not in productos_vendidos:
-            productos_vendidos[producto] = cantidad
-        else:
-            productos_vendidos[producto] += cantidad
+print("total ingresado:", calcular_total(ordenes))
+total_ordenes, total_ingresos, por_cliente, vendidos = generar_reporte(ordenes)
 
-    print("\n==== REPORTE ====")
-    print("Total de órdenes:", total_ordenes)
-    print("Total de ingresos:", total_ingresos)
+print("\n==== REPORTE ====")
+print("Total de órdenes:", total_ordenes)
+print("Total de ingresos:", total_ingresos)
 
-    print("\nPedidos por cliente:")
-    for cliente, cantidad in ordenes_por_cliente.items():
-        print(f"Cliente {cliente}: {cantidad} productos")
+print("\nPedidos por cliente:")
+for cliente, cantidad in por_cliente.items():
+    print(f"Cliente {cliente}: {cantidad} productos")
 
-    print("\nProductos vendidos:")
-    for producto, cantidad in productos_vendidos.items():
-        print(f"{producto}: {cantidad} unidades")
-
-print("Total ingresado:", calcular_total(ordenes))
-generar_reporte(ordenes)
+print("\nProductos vendidos:")
+for producto, cantidad in vendidos.items():
+    print(f"{producto}: {cantidad} unidades")
